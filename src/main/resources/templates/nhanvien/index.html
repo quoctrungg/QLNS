@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net,nz/thymeleaf/layout"
+      layout:decorate="_layout"
+      xmlns:custom="http://www.w3.org/XML/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Nhân Viên</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <a href="@{NhanVien/create}" class="btn btn-primary">Thêm Nhân Viên</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mã Nhân Viên</th>
+            <th scope="col">Tên Nhân Viên</th>
+            <th scope="col">Phái</th>
+            <th scope="col">Nơi Sinh</th>
+            <th scope="col">Mã Phòng</th>
+            <th scope="col">Lương</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="NhanVien : ${Listnhanvien}">
+            <th scope="row" th:text="${NhanVien.maNV}"></th>
+            <td th:text="${NhanVien.tenNV}"></td>
+            <td th:text="${NhanVien.phai}"></td>
+            <td th:text="${NhanVien.noiSinh}"></td>
+            <td th:text="${NhanVien.maPhong}"></td>
+            <td th:text="${NhanVien.luong}"></td>
+            <td>
+                <a th:href="${/NhanVien/edit/{id}(id=${NhanVien.maNV})}" custom:linkMethod="post" class="btn btn-secondary">Edit</a>
+                <a th:href="${/NhanVien/delete/{id}(id=${NhanVien.maNV})}" custom:linkMethod="post" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
